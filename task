@@ -1,0 +1,22 @@
+from datetime import date as d
+
+
+class Date:
+    def __init__(self, date):
+        self.string_date = date
+        self.year, self.month, self.day = [int(x) for x in date.split('-')]
+        self.date = d(self.year, self.month, self.day)
+
+    def __repr__(self):
+        return self.string_date
+
+    def daysBetween(self, other):
+        return abs((self.date - other.date).days)
+
+    def __lt__(self, other):
+        return (self.date - other.date).days < 0
+
+
+a = Date('2013-11-01')
+b = Date('2014-05-16')
+print(a.daysBetween(b))
